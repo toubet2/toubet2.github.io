@@ -42,7 +42,10 @@ window.addEventListener('DOMContentLoaded', () => {
       word = word.toLowerCase();
     }
     while ((position = text.indexOf(word, startPosition)) > -1) {
-      index.push({ position, word });
+      index.push({
+        position: position,
+        word    : word
+      });
       startPosition = position + wordLen;
     }
     return index;
@@ -59,8 +62,8 @@ window.addEventListener('DOMContentLoaded', () => {
         searchTextCountInSlice++;
       }
       hits.push({
-        position,
-        length: word.length
+        position: position,
+        length  : word.length
       });
       let wordEnd = position + word.length;
 
@@ -198,10 +201,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
           resultItem += '</li>';
           resultItems.push({
-            item: resultItem,
-            id  : resultItems.length,
-            hitCount,
-            searchTextCount
+            item           : resultItem,
+            searchTextCount: searchTextCount,
+            hitCount       : hitCount,
+            id             : resultItems.length
           });
         }
       });
@@ -283,10 +286,12 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // Handle and trigger popup window
-  document.querySelectorAll('.popup-trigger').forEach(element => {
-    element.addEventListener('click', () => {
-      isfetched ? proceedSearch() : searchFunc();
-    });
+  document.querySelector('.popup-trigger').addEventListener('click', () => {
+    if (isfetched === false) {
+      searchFunc();
+    } else {
+      proceedSearch();
+    }
   });
 
   // Monitor main search box
