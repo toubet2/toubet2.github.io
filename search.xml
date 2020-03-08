@@ -3,7 +3,37 @@
   <entry>
     <title>SnakeGame</title>
     <url>/2020/03/08/SnakeGame/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p><strong><em>写在前面</em></strong></p>
+<p><em>此教程编写于Keil5 MDK版控制STM32单片机，编程思路算法大致相同，可借鉴思路</em></p>
+<p>变量定义”g_n***”中g表global，全局的意思；n表示为整形。</p>
+<p><strong>注意</strong></p>
+<ul>
+<li>屏幕大小320*240</li>
+<li>“print”与“printf”差异为后者颜色默认为黑色，前者可变<a id="more"></a>
+
+</li>
+</ul>
+<h3 id="一、游戏初始化"><a href="#一、游戏初始化" class="headerlink" title="一、游戏初始化"></a>一、游戏初始化</h3><p><strong>游戏边框背景</strong></p>
+<p><em>得分定义一个全局变量，因为要在多函数中调用（例：g_nScore）</em></p>
+<h4 id="1-单片机"><a href="#1-单片机" class="headerlink" title="1. 单片机"></a>1. 单片机</h4><ul>
+<li><p>REC函数画矩形，初始化是为后续画蛇做准备<br><img src="https://cdn.jsdelivr.net/gh/toubet2/Stranger/img/background.png" alt=""></p>
+</li>
+<li><p>显示效果<br><img src="https://cdn.jsdelivr.net/gh/toubet2/Stranger/img/backview.jpg" alt=""></p>
+</li>
+</ul>
+<h4 id="2-C语言控制台"><a href="#2-C语言控制台" class="headerlink" title="2. C语言控制台"></a>2. C语言控制台</h4><p>(1)边框显示</p>
+<ul>
+<li>边框可以使用如下数组实现（注意”■”占两个字节）<br><img src="https://cdn.jsdelivr.net/gh/toubet2/Stranger/img/cback.jpg" alt=""></li>
+</ul>
+<p>(2)分数显示</p>
+<ul>
+<li>使用SetConsoleCursorPosition()函数改变光标位置到需要的位置。下示例可运行展示效果效果。<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    COORD pos;</span><br><span class="line">    pos.X = <span class="number">8</span>;</span><br><span class="line">    pos.Y = <span class="number">10</span>;</span><br><span class="line">    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"分数"</span>);</span><br><span class="line">    </span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://cdn.jsdelivr.net/gh/toubet2/Stranger/img/Score.png" alt=""></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Snake</category>
+      </categories>
       <tags>
         <tag>Snake</tag>
         <tag>Game</tag>
